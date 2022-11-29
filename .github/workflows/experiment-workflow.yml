@@ -1,5 +1,7 @@
 name: Concurrency-PR
-on:  
+on:
+  repository_dispatch:
+    types: [Concurrency-PR]
   push: 
     branches: [ main]  
     
