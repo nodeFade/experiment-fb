@@ -1,56 +1,25 @@
-name: Concurrency-PR
+name: build
 on:
-  repository_dispatch:
-    types: [Concurrency-PR]
-  push: 
-    branches: [ main]  
-    
-concurrency:
-  group: test-on-pr-${{github.head_ref}}
-  #group: build-and-test  
-  cancel-in-progress: false
-  
-jobs:  
-
-  build-and-test-on-pr:
-    name: build and test on pull request
-    runs-on: ubuntu-latest
-    
-    steps: 
-      - uses: actions/checkout@v3
-    
-      - name: output HeadRef
-        run: echo "${{github.head_ref}}"
-      
-      - name: Get uuid
-        id: uuid
+  push:
+    branches:
+      - master
+  pull_request:
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build an image from Dockerfile
         run: |
-            uuid=$(uuidgen) >> $GITHUB_ENV
-            echo $uuid
-            echo "uuidenv=$(echo $uuid)" >> $GITHUB_ENV
-            
-      - name: write the uuid in the counter-file
-        run: |
-          echo $uuidenv
-          touch counter-file.txt 
-          ls
-          echo "$uuidenv" > ./counter-file.txt
-          cat counter-file.txt
-          ls ${{ github.workspace }} #response >> counter-file.txt
-          ls ${GITHUB_WORKSPACE}
-          chmod u+x "${GITHUB_WORKSPACE}/counter-file.txt"
-          ls -lah 
-
-            
-      - name: Build The Code
-        run: | 
-          echo "starting building the code"
-          sleep 1m
-          echo "Finish the code"
-          
-          
-      - name: Test the code
-        run: | 
-          echo "starting building the code"
-          sleep 1m
-          echo "Finish the code"
+          docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
