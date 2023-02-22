@@ -34,11 +34,11 @@ jobs:
           docker image rm -f $imagetag
       
       - name: Install Snyk CLI
-      run: |
-        curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-        sudo apt-get install -y nodejs
-        sudo npm install -g snyk
-      
+        run: |
+          curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+          sudo apt-get install -y nodejs
+          sudo npm install -g snyk
+        
       - name: Snyk scan
         run: snyk test --docker my-image
         env:
