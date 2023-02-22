@@ -1,7 +1,6 @@
 
 name: Build hello-world application
 on:
-  workflow_dispatch:
   push:
     - main
     # paths:
