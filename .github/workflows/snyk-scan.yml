@@ -25,7 +25,8 @@ jobs:
           docker build --no-cache --tag $imagetag --build-arg ARCH=${{ matrix.arch }} .
           docker cp $(docker create $imagetag):/opt/app ./build
           cd ..
-          docker image rm -f $imagetag
+          echo "Here are the docker images:"
+          docker images -a
       
       - name: Install Snyk CLI
         run: |
