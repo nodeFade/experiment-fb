@@ -38,9 +38,8 @@ jobs:
         env:
           imagetag: ${{ env.EXREPO }}_${{ env.EXNAME }}:1.0
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: |
-          snyk test --docker ${imagetag}
-          continue-on-error: true
+        run: snyk test --docker ${imagetag}
+        continue-on-error: true
           
       - name: Upload results to Snyk
         env:
