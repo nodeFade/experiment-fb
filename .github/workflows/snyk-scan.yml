@@ -34,7 +34,7 @@ jobs:
           sudo npm install -g snyk
         
       - name: Snyk scan
-        run: snyk test --docker $imagetag
+        run: snyk test --docker ${imagetag}
         env:
           imagetag: ${{ env.EXREPO }}_${{ env.EXNAME }}:1.0
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
