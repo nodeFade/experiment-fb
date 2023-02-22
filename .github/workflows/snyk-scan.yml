@@ -3,7 +3,10 @@ name: Build hello-world application
 on:
   workflow_dispatch:
   push:
-    - main
+    paths:
+      - 'hello-world/**'
+      - '!hello-world/README.md'
+      - '.github/workflows/hello-world.yml'
 jobs:
   build:
     runs-on: ubuntu-latest
