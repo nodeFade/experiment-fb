@@ -41,13 +41,12 @@ jobs:
         run: |
           snyk test --docker ${imagetag}
           continue-on-error: true
-          snyk monitor --file=snyk_results.json --org=nodeFade --project-name=hello-world-with-snyk
           
-      # - name: Upload results to Snyk
-      #   env:
-      #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      #   run: |
-      #     snyk monitor --file=snyk_results.json --org=nodeFade --project-name=hello-world-with-snyk
+      - name: Upload results to Snyk
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        run: |
+          snyk monitor --file=snyk_results.json --org=nodeFade --project-name=hello-world-with-snyk
 
 
       
