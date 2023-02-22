@@ -46,10 +46,10 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: |
           ls
-          snyk --help
+          snyk auth [${{ secrets.SNYK_TOKEN }}]
           snyk test --package-manager=npm
           snyk monitor --file=/home/runner/work/experiment-fb/snyk_results.json --org=nodeFade --project-name=experiment-fb
-
+        # snyk config set api=<token>
 
       
 
