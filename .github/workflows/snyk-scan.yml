@@ -1,11 +1,14 @@
 
 name: Build hello-world application
-on:
-  push:
+on: 
+  push:    
     paths:
       - 'hello-world/**'
       - '!hello-world/README.md'
       - '.github/workflows/hello-world.yml'
+  pull_request: 
+    branches:        
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
