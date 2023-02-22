@@ -46,6 +46,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: |
           ls
+          snyk --help
           snyk test --package-manager=npm
           snyk monitor --file=/home/runner/work/experiment-fb/snyk_results.json --org=nodeFade --project-name=hello-world
 
