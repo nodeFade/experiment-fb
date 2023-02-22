@@ -41,15 +41,15 @@ jobs:
         run: snyk test --docker ${imagetag}
         continue-on-error: true
           
-      - name: Upload results to Snyk
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: |
-          ls
-          snyk config set api=${{ secrets.SNYK_TOKEN }}
-          snyk test --package-manager=npm
-          snyk monitor --file=/home/runner/work/experiment-fb/snyk_results.json --org=nodeFade --project-name=experiment-fb
-        # snyk auth [${{ secrets.SNYK_TOKEN }}]
+      # - name: Upload results to Snyk
+      #   env:
+      #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      #   run: |
+      #     ls
+      #     snyk test --package-manager=npm
+      #     snyk monitor --file=/home/runner/work/experiment-fb/snyk_results.json --org=nodeFade --project-name=experiment-fb
+        # snyk config set api=${{ secrets.SNYK_TOKEN }}
+
 
       
 
