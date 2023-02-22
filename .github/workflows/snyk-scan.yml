@@ -39,7 +39,7 @@ jobs:
           imagetag: ${{ env.EXREPO }}_${{ env.EXNAME }}:1.0
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: |
-          snyk test --severity-threshold=high,critical --docker ${imagetag}
+          snyk test --severity-threshold=medium --docker ${imagetag}
           snyk monitor --file=snyk_results.json --org=nodeFade --project-name=hello-world-with-snyk
           
       # - name: Upload results to Snyk
