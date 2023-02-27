@@ -50,7 +50,15 @@ jobs:
       #     snyk monitor --file=/home/runner/work/experiment-fb/snyk_results.json --org=nodeFade --project-name=experiment-fb
         # snyk config set api=${{ secrets.SNYK_TOKEN }}
 
-
-      
+      - uses: jfrog/setup-jfrog-cli@v3
+        env:
+          # JFrog platform url (for example: https://acme.jfrog.io) 
+          JF_URL: ${{ secrets.JF_URL }}
+          
+          # Basic authentication credentials
+          JF_USER: ${{ secrets.ARTIFACTORY_USERNAME }}
+          JF_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
+      - run: |
+          jf rt ping
 
  
