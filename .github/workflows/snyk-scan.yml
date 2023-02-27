@@ -57,7 +57,7 @@ jobs:
           
           # Basic authentication credentials
           JF_USER: ${{ secrets.ARTIFACTORY_USERNAME }}
-          JF_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
+          JF_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORDD }}
       - run: |
           jf rt ping
 
