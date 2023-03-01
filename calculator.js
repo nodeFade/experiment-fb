@@ -1,18 +1,28 @@
-function calculate() {
-  let num1 = Number(document.getElementById("num1").value);
-  let num2 = Number(document.getElementById("num2").value);
-  let operation = document.getElementById("operation").value;
-  let result = 0;
+// get input values from the user
+let num1 = parseFloat(prompt("Enter the first number:"));
+let num2 = parseFloat(prompt("Enter the second number:"));
 
-  if (operation === "add") {
+// get the operation to be performed
+let operator = prompt("Enter the operation (+, -, *, /):");
+
+// perform the operation and store the result in a variable
+let result;
+switch(operator) {
+  case "+":
     result = num1 + num2;
-  } else if (operation === "subtract") {
+    break;
+  case "-":
     result = num1 - num2;
-  } else if (operation === "multiply") {
+    break;
+  case "*":
     result = num1 * num2;
-  } else if (operation === "divide") {
+    break;
+  case "/":
     result = num1 / num2;
-  }
-
-  document.getElementById("result").innerHTML = "Result: " + result;
+    break;
+  default:
+    alert("Invalid operator");
 }
+
+// display the result to the user
+alert("The result is: " + result);
