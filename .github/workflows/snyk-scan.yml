@@ -59,6 +59,6 @@ jobs:
           JF_USER: ${{ secrets.ARTIFACTORY_USERNAME }}
           JF_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
       - run: |
-          jf rt ping
+          jf rt ping 
 
  
